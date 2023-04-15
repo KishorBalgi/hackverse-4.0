@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import api from "../../Config";
+import Alert from "../../Utils/alert";
 
 // User sign up page 
 const SignUp = () => {
@@ -7,10 +9,28 @@ const SignUp = () => {
         phoneno : '',
         password : ''
     });
+    const [status , setStatus] = useState({});
 
     const submitHandler = (e) => {
         e.preventDefault();
-        console.log(formData);
+        api.post('/api/auth/signup' , {
+            name : formData.name,
+            phone : formData.phoneno,
+            password : formData.password
+        }, {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+        })
+        .then(res => {
+            if (res.ok)
+                setStatus({ message: res.message, type: "ok" })
+            else
+                setStatus({ message: res.message, type: "error" })
+        })
+        .catch(err => {
+            setStatus({ message: err.message, type: "error" })
+        });
     }
 
     const inputHandler = (e) => {
@@ -24,6 +44,7 @@ const SignUp = () => {
         <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100">
             <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
                 <h2 className="text-2xl font-bold mb-4">Sign Up</h2>
+                <Alert message={status.message} type={status.type}/>
                 <form onSubmit={submitHandler}>
                     <div className="mb-4">
                         <label
