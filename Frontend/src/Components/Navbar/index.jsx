@@ -14,7 +14,7 @@ const Navbar = () => {
       .then((res) => console.log("User logged out"))
       .catch((err) => console.log(err.message));
 
-    console.log("hey done");
+    setUser(null);
   };
 
   return (
