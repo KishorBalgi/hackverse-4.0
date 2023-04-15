@@ -69,7 +69,7 @@ module.exports.login = catchAsync(async (req, res, next) => {
 
   if (!phone)
     return next(
-      new AppError(400, "User E-mail is required", error[400].phoneRequired)
+      new AppError(400, "User phone is required", error[400].phoneRequired)
     );
   if (!password) {
     return next(
@@ -78,6 +78,12 @@ module.exports.login = catchAsync(async (req, res, next) => {
   }
 
   const user = await User.findOne({ phone }).select("+password");
+
+  if (user && user.phone_verified === false) {
+    return next(
+      new AppError(400, "Phone not verified", error[400].phoneNotVerified)
+    );
+  }
 
   // Check if user exists and password is correct:
   if (!user || !(await user.checkPassword(password))) {
