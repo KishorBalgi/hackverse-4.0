@@ -86,12 +86,30 @@ module.exports.updatePassword = catchAsync(async (req, res, next) => {
 
 // get user buy and sell activity:
 module.exports.getUserActivity = catchAsync(async (req, res, next) => {
-  const purchases = await Purchase.find({ buyer: req.user._id });
-  //  find all items from purchases by po[ulating the item field:
-  const sales = await Purchase.find().populate({
-    path: "item",
-    match: { seller: req.user._id },
-  });
+  const purchases = await Purchase.find({ buyer: req.user._id }).populate(
+    "item"
+  );
+  //  find all items from purchases by populating the item field:
+  // const sales = await Purchase.find().populate({
+  //   path: "item",
+  //   match: { "item.seller": { $eq: req.user._id } },
+  // });
+  const sales = await Purchase.aggregate([
+    {
+      $lookup: {
+        from: "items",
+        localField: "item",
+        foreignField: "_id",
+        as: "item",
+      },
+    },
+    {
+      $unwind: "$item",
+    },
+    {
+      $match: { "item.seller": { $eq: req.user._id } },
+    },
+  ]);
 
   return res
     .status(200)
