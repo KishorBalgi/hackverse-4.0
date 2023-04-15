@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import api from "../../Config";
 import Alert from "../../Utils/alert";
+import { useNavigate } from "react-router-dom";
 
 // User sign up page 
 const SignUp = () => {
@@ -10,6 +11,7 @@ const SignUp = () => {
         password : ''
     });
     const [status , setStatus] = useState({});
+    const navigate = useNavigate();
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -24,12 +26,12 @@ const SignUp = () => {
         })
         .then(res => {
             if (res.ok)
-                setStatus({ message: res.message, type: "ok" })
+                navigate(`/otp/${formData.phoneno}`);
             else
-                setStatus({ message: res.message, type: "error" })
+                setStatus({ message: res.message, type: "error" });
         })
         .catch(err => {
-            setStatus({ message: err.message, type: "error" })
+            setStatus({ message: err.message, type: "error" });
         });
     }
 
