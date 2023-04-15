@@ -9,6 +9,8 @@ import OTP from "./Components/Authenticate/otp";
 import UserCart from "./Components/Cart/userCart";
 import { useUser } from "./Context/userContext";
 import api from "./Config";
+import AddProduct from "./Pages/addProduct";
+import DashboardPage from "./Pages/dashboard";
 
 const App = () => {
   const { user, setUser } = useUser();
@@ -27,6 +29,8 @@ const App = () => {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/otp/:phoneno" element={<OTP />} />
         <Route path="/cart" element={<UserCart />} />
+        <Route path="/addproduct" element={<AddProduct/>}/>
+        <Route path="/dashboard" element={<DashboardPage/>}/>
       </Routes>
       <Footer />
     </>
