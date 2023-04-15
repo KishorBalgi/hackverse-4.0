@@ -1,0 +1,11 @@
+# Modules
+
+/node_modules
+
+# Environment
+
+*.env
+
+# Scripts
+
+/my_scripts
