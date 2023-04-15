@@ -1,6 +1,4 @@
 import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import api from "../../Config";
 import { useUser } from "../../Context/userContext";
@@ -13,8 +11,6 @@ const Navbar = () => {
       .get("/api/auth/logout")
       .then((res) => console.log("User logged out"))
       .catch((err) => console.log(err.message));
-
-    console.log("hey done");
   };
 
   return (
@@ -33,31 +29,17 @@ const Navbar = () => {
             <div className="hidden sm:block sm:ml-6">
               <div className="flex space-x-4">
                 <Link
-                  to="/"
+                  to="/dashboard"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Dashboard
                 </Link>
 
                 <Link
-                  to="#"
+                  to="/addproduct"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  Team
-                </Link>
-
-                <Link
-                  to="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Projects
-                </Link>
-
-                <Link
-                  to="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Calendar
+                  Add Product
                 </Link>
               </div>
             </div>
