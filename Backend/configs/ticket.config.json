@@ -1,0 +1,7 @@
+{
+  "ticket_purpose": {
+    "EMAIL_VERIFICATION": "Email_Verification",
+    "FORGOT_PASSWORD": "Forgot_Password"
+  },
+  "expiration": 10
+}
