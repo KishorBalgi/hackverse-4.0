@@ -54,9 +54,9 @@ const handleDuplicateFieldDB = (err) => {
   console.log(field);
   let message = "Duplicate field value entered";
   let type = errorCodes[403].duplicateError;
-  if (field === "email") {
-    message = "Email already in use";
-    type = errorCodes[403].emailAlreadyInUse;
+  if (field === "phone") {
+    message = "Phone already in use";
+    type = errorCodes[403].phoneAlreadyInUse;
   }
   return new AppError(403, message, type);
 };
