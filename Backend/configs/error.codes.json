@@ -1,0 +1,46 @@
+{
+  "400": {
+    "nameRequired": "400-nameRequired",
+    "userRequired": "400-userRequired",
+    "emailRequired": "400-emailRequired",
+    "emailInvalid": "400-emailInvalid",
+    "emailAlreadyVerified": "400-emailAlreadyVerified",
+    "verificationEmailAlreadySent": "400-verificationEmailAlreadySent",
+    "passwordRequired": "400-passwordRequired",
+    "passwordMinLength": "400-passwordMinLength",
+    "passwordMaxLength": "400-passwordMaxLength",
+    "passwordsDoNotMatch": "400-passwordsDoNotMatch",
+    "passwordResetEmailAlreadySent": "400-passwordResetEmailAlreadySent",
+    "invalidCredentials": "400-invalidCredentials",
+    "ticketPurposeRequired": "400-ticketPurposeRequired",
+    "ticketTokenRequired": "400-ticketTokenRequired",
+    "tokenRequired": "400-tokenRequired",
+    "dataRequired": "400-dataRequired",
+    "castError": "400-castError",
+    "fileUploadError": "400-fileUploadError",
+    "fileSizeExceeded": "400-fileSizeExceeded",
+    "fileTypeNotAllowed": "400-fileTypeNotAllowed",
+    "fileRequired": "400-fileRequired",
+    "invalidPageNumber": "400-invalidPageNumber"
+  },
+  "401": {
+    "invalidToken": "401-invalidToken",
+    "unauthorized": "401-unauthorized",
+    "tokenExpired": "401-tokenExpired"
+  },
+  "403": {
+    "forbidden": "403-forbidden",
+    "emailAlreadyInUse": "403-emailAlreadyInUse",
+    "duplicateError": "403-duplicateError"
+  },
+  "404": {
+    "userNotFound": "404-userNotFound",
+    "ticketNotFound": "404-ticketNotFound"
+  },
+  "500": {
+    "internalServerError": "500-internalServerError"
+  },
+  "503": {
+    "serviceUnavailable": ""
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "profile-picture": {
+    "limits": {
+      "fileSize": 2e6
+    }
+  }
+}
