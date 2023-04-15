@@ -4,41 +4,38 @@ import CropBox from "./CropBox";
 const CropCards = () => {
   const data = [
     {
-      profilePhoto:
-        "https://images.unsplash.com/photo-1610392347869-1b2f1b2f1b2f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
       sellerName: "John Doe",
       name: "Wheat",
       date: "12/12/2021",
       qty: 100,
       price: 100,
       desc: "This is the one of the best crop in the the region of Punjab, especially in the district of Amritsar.",
+      phone : "1234567890"
     },
     {
-      sellerPhoto:
-        "https://images.unsplash.com/photo-1610392347869-1b2f1b2f1b2f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
       sellerName: "John Doe",
       name: "Wheat",
       date: "12/12/2021",
       qty: 100,
       price: 100,
+      desc: "This is the one of the best crop in the the region of Punjab, especially in the district of Amritsar.",
+      phone : "1234567890"
     },
     {
-      sellerPhoto:
-        "https://images.unsplash.com/photo-1610392347869-1b2f1b2f1b2f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
       sellerName: "John Doe",
       name: "Wheat",
       date: "12/12/2021",
       qty: 100,
       price: 100,
+      desc: "This is the one of the best crop in the the region of Punjab, especially in the district of Amritsar.",
+      phone : "1234567890"
     },
     {
-        sellerPhoto:
-          "https://images.unsplash.com/photo-1610392347869-1b2f1b2f1b2f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-        sellerName: "John Doe",
         name: "Wheat",
         date: "12/12/2021",
         qty: 100,
         price: 100,
+        desc: "This is the one of the best crop in the the region of Punjab, especially in the district of Amritsar.",
     },
   ];
 

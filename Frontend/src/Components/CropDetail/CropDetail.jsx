@@ -1,6 +1,6 @@
 import React from 'react'
-import Filter from "./Components/Filter/Filter";
-import CropCards from "./Components/CropCards/CropCards";
+import Filter from "../Filter/Filter";
+import CropCards from "../CropCards/CropCards";
 
 export default function CropDetail() {
   return (

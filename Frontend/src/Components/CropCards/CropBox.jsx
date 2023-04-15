@@ -21,9 +21,6 @@ const CropBox = ({ crop }) => {
           <p className="text-gray-500">
             <p className="text-gray-700">Date : {crop.date}</p>
           </p>
-          <p className="text-gray-500">
-            <p className="text-gray-700">Seller Name : {crop.sellerName}</p>
-          </p>
           <div class="flex mt-4 space-x-3 md:mt-6 mr-2 ml-2">
           <button
               className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -40,9 +37,10 @@ const CropBox = ({ crop }) => {
           </div>
           {showDescription && (
             <div className="mt-4 mr-2 ml-2">
-              <p className="text-gray-700">
-                <b>{crop.desc}</b>
+              <p className="text-gray-700 font-bold">
+                {crop.desc}
               </p>
+              <p className="font-medium">Seller phone : {crop.phone} </p>
             </div>
           )}
         </div>
