@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import api from "../../Config";
 import Alert from "../../Utils/alert";
+import { useNavigate } from "react-router-dom";
 
 // User sign in page
 const SignIn = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     phoneno: "",
     password: "",
@@ -28,9 +30,10 @@ const SignIn = () => {
       )
       .then((res) => {
         console.log(res);
-        if (res.status === 200)
+        if (res.status === 200) {
           setStatus({ message: res.data.message, type: "ok" });
-        else setStatus({ message: res.message, type: "error" });
+          navigate("/");
+        } else setStatus({ message: res.message, type: "error" });
       })
       .catch((err) => {
         setStatus({ message: err.message, type: "error" });
