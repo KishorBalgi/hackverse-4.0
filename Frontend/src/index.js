@@ -4,14 +4,20 @@ import App from "./App";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { CartProvider } from "./Context/cartContext";
+import { UserProvider } from "./Context/userContext";
+import { CookiesProvider } from "react-cookie";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
-    <React.StrictMode>
-      <CartProvider>
-        <App />
-      </CartProvider>
-    </React.StrictMode>
+    <CookiesProvider>
+      <React.StrictMode>
+        <UserProvider>
+          <CartProvider>
+            <App />
+          </CartProvider>
+        </UserProvider>
+      </React.StrictMode>
+    </CookiesProvider>
   </BrowserRouter>
 );

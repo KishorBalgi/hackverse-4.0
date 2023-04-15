@@ -53,6 +53,10 @@ const userSchema = new mongoose.Schema({
       ref: "Review",
     },
   ],
+  coins: {
+    type: Number,
+    default: 0,
+  },
   _profile_info: {
     created_at: {
       type: Date,

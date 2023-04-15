@@ -24,7 +24,22 @@ module.exports.createReview = catchAsync(async (req, res, next) => {
       )
     );
 
-  const item = await Review.create({
+  const findReview = await Review.findOne({
+    forSeller,
+    forItem,
+    from: req.user._id,
+  });
+  if (findReview) {
+    return next(
+      new AppError(
+        400,
+        "You have already added a review for this seller and item",
+        error[403].forbidden
+      )
+    );
+  }
+
+  const reviewItem = await Review.create({
     review,
     forSeller,
     forItem,
@@ -33,12 +48,17 @@ module.exports.createReview = catchAsync(async (req, res, next) => {
   });
 
   const user = await User.findById(forSeller);
-  user.reviews.push(item._id);
+  user.reviews.push(reviewItem._id);
   if (upvote) user.upvotes = user.upvotes + 1;
   else user.downvotes = user.downvotes + 1;
+
+  //   Reward the user:
+  user.coins = user.coins + 0.2;
   await user.save();
 
-  res.status(201).json(Response(null, "Review created successfully", { item }));
+  res
+    .status(201)
+    .json(Response(null, "Review created successfully", { reviewItem }));
 });
 
 // Get all items with filter controller:

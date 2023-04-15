@@ -1,7 +1,22 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import api from "../../Config";
+import { useUser } from "../../Context/userContext";
 
 const Navbar = () => {
+  const { user, setUser } = useUser();
+
+  const logoutHandler = () => {
+    api
+      .get("/api/auth/logout")
+      .then((res) => console.log("User logged out"))
+      .catch((err) => console.log(err.message));
+
+    console.log("hey done");
+  };
+
   return (
     <nav className="bg-gray-800">
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -51,24 +66,29 @@ const Navbar = () => {
           {/* User menu */}
           <div className="hidden sm:block sm:ml-6">
             <div className="flex space-x-4">
-              <Link
-                to="/signin"
-                className="bg-indigo-500 text-white px-3 py-2 rounded-md text-sm font-medium"
-              >
-                Sign in
-              </Link>
-              <Link
-                to="signup"
-                className="bg-indigo-500 text-white px-3 py-2 rounded-md text-sm font-medium"
-              >
-                Sign up
-              </Link>
-              <Link
-                to="otp"
-                className="bg-indigo-500 text-white px-3 py-2 rounded-md text-sm font-medium"
-              >
-                With OTP
-              </Link>
+              {user === null ? (
+                <>
+                  <Link
+                    to="/signin"
+                    className="bg-indigo-500 text-white px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    Sign in
+                  </Link>
+                  <Link
+                    to="signup"
+                    className="bg-indigo-500 text-white px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    Sign up
+                  </Link>
+                </>
+              ) : (
+                <button
+                  onClick={logoutHandler}
+                  className="bg-indigo-500 text-white px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Logout
+                </button>
+              )}
             </div>
           </div>
 
@@ -119,8 +139,8 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      </nav>
+    </nav>
   );
-}
+};
 
 export default Navbar;

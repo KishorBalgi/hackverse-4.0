@@ -1,28 +1,30 @@
 import { useState } from "react";
 import api from "../../Config";
 import Alert from "../../Utils/alert";
+import { useParams } from "react-router-dom";
 
 const OTP = () => {
 
-    const [phoneno, setPhoneno] = useState();
+    // const [phoneno, setPhoneno] = useState();
     const [otp, setOtp] = useState();
     const [status , setStatus] = useState({});
+    const params = useParams();
 
-    const submitNumberHandler = (e) => {
-        e.preventDefault();
-        api.get(`/api/auth/sendOTP?phone=${phoneno}`)
-            .then(res => {
-                if(res.ok)
-                    setStatus({ message : "OTP sent to number" , type : "ok" })
-            })
-            .catch(err => {
-                setStatus({ message : "Unable to send OTP" , type : "error" })
-            });
-    }
+    // const submitNumberHandler = (e) => {
+    //     e.preventDefault();
+    //     api.get(`/api/auth/sendOTP?phone=${phoneno}`)
+    //         .then(res => {
+    //             if(res.ok)
+    //                 setStatus({ message : "OTP sent to number" , type : "ok" })
+    //         })
+    //         .catch(err => {
+    //             setStatus({ message : "Unable to send OTP" , type : "error" })
+    //         });
+    // }
 
     const otpSubmitHandler = (e) => {
         e.preventDefault();
-        api.get(`api/auth/verifyOTP?phone=${phoneno}&code=${otp}`)
+        api.get(`api/auth/verifyOTP?phone=${params.phoneno}&code=${otp}`)
             .then(res => {
                 if(res.ok)
                     setStatus({ message : "OTP is verified" , type : "ok" })
@@ -32,9 +34,9 @@ const OTP = () => {
             });
     }
 
-    const numberHandler = (e) => {
-        setPhoneno(e.target.value);
-    }
+    // const numberHandler = (e) => {
+    //     setPhoneno(e.target.value);
+    // }
 
     const otpHandler = (e) => {
         setOtp(e.target.value);
@@ -45,7 +47,7 @@ const OTP = () => {
             <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
                 <h2 className="text-2xl font-bold mb-4">OTP Authentication</h2>
                 <Alert message={status.message} type={status.type}/>
-                <form onSubmit={submitNumberHandler}>
+                {/* <form onSubmit={submitNumberHandler}>
                     <div className="mb-4">
                         <label
                             htmlFor="phoneno"
@@ -69,7 +71,7 @@ const OTP = () => {
                     >
                         Send OTP
                     </button>
-                </form>
+                </form> */}
                 <form onSubmit={otpSubmitHandler}>
 
                     <div className="mb-4">
