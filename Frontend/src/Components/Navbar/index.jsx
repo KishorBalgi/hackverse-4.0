@@ -52,16 +52,22 @@ const Navbar = () => {
           <div className="hidden sm:block sm:ml-6">
             <div className="flex space-x-4">
               <Link
-                to="#"
+                to="/signin"
                 className="bg-indigo-500 text-white px-3 py-2 rounded-md text-sm font-medium"
               >
                 Sign in
               </Link>
               <Link
-                to="#"
+                to="signup"
                 className="bg-indigo-500 text-white px-3 py-2 rounded-md text-sm font-medium"
               >
                 Sign up
+              </Link>
+              <Link
+                to="otp"
+                className="bg-indigo-500 text-white px-3 py-2 rounded-md text-sm font-medium"
+              >
+                With OTP
               </Link>
             </div>
           </div>

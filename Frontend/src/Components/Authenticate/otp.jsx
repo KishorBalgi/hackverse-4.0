@@ -1,18 +1,35 @@
 import { useState } from "react";
+import api from "../../Config";
+import Alert from "../../Utils/alert";
 
 const OTP = () => {
 
     const [phoneno, setPhoneno] = useState();
     const [otp, setOtp] = useState();
+    const [status , setStatus] = useState({});
 
     const submitNumberHandler = (e) => {
         e.preventDefault();
-        console.log(phoneno);
+        api.get(`/api/auth/sendOTP?phone=${phoneno}`)
+            .then(res => {
+                if(res.ok)
+                    setStatus({ message : "OTP sent to number" , type : "ok" })
+            })
+            .catch(err => {
+                setStatus({ message : "Unable to send OTP" , type : "error" })
+            });
     }
 
     const otpSubmitHandler = (e) => {
         e.preventDefault();
-        console.log(otp);
+        api.get(`api/auth/verifyOTP?phone=${phoneno}&code=${otp}`)
+            .then(res => {
+                if(res.ok)
+                    setStatus({ message : "OTP is verified" , type : "ok" })
+            })
+            .catch(err => {
+                setStatus({ message : "Unable to verify OTP" , type : "error" })
+            });
     }
 
     const numberHandler = (e) => {
@@ -27,6 +44,7 @@ const OTP = () => {
         <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100">
             <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
                 <h2 className="text-2xl font-bold mb-4">OTP Authentication</h2>
+                <Alert message={status.message} type={status.type}/>
                 <form onSubmit={submitNumberHandler}>
                     <div className="mb-4">
                         <label
@@ -52,7 +70,7 @@ const OTP = () => {
                         Send OTP
                     </button>
                 </form>
-                <form>
+                <form onSubmit={otpSubmitHandler}>
 
                     <div className="mb-4">
                         <label
