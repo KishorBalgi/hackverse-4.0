@@ -11,6 +11,8 @@ import { useUser } from "./Context/userContext";
 import api from "./Config";
 import AddProduct from "./Pages/addProduct";
 import DashboardPage from "./Pages/dashboard";
+import CropDetail from "./Components/CropDetail/CropDetail";
+import Home from "./Components/Home/Home";
 
 const App = () => {
   const { user, setUser } = useUser();
@@ -24,6 +26,7 @@ const App = () => {
   return (
     <>
       <Navbar />
+      
       <Routes>
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
@@ -31,8 +34,20 @@ const App = () => {
         <Route path="/cart" element={<UserCart />} />
         <Route path="/addproduct" element={<AddProduct/>}/>
         <Route path="/dashboard" element={<DashboardPage/>}/>
+        <Route path="/home" element={<Home/>}/>
+        <Route path="/CropDetail" element={<CropDetail/>}/>
       </Routes>
+
       <Footer />
+      <form>
+        <script
+          src="https://checkout.razorpay.com/v1/payment-button.js"
+          data-payment_button_id="pl_IuhO61pYI34ute"
+          async
+        >
+          {" "}
+        </script>{" "}
+      </form>
     </>
   );
 };
