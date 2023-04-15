@@ -1,10 +1,10 @@
 // const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
 
-const admin = {
-  email: "apps.kishorbalgi@gmail.com",
-  name: "Kishor Balgi",
-};
+// const admin = {
+//   email: "apps.kishorbalgi@gmail.com",
+//   name: "Kishor Balgi",
+// };
 
 // Sing JWT and return
 const signJWTToken = (data) => {

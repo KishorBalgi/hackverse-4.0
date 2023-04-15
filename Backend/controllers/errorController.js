@@ -51,6 +51,7 @@ const handleCastErrorDB = (err) => {
 
 const handleDuplicateFieldDB = (err) => {
   const field = Object.keys(err.keyValue)[0];
+  console.log(field);
   let message = "Duplicate field value entered";
   let type = errorCodes[403].duplicateError;
   if (field === "email") {

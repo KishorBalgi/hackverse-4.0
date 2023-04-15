@@ -11,6 +11,7 @@
     "passwordMaxLength": "400-passwordMaxLength",
     "passwordsDoNotMatch": "400-passwordsDoNotMatch",
     "passwordResetEmailAlreadySent": "400-passwordResetEmailAlreadySent",
+    "phoneRequired": "400-phoneRequired",
     "invalidCredentials": "400-invalidCredentials",
     "ticketPurposeRequired": "400-ticketPurposeRequired",
     "ticketTokenRequired": "400-ticketTokenRequired",

@@ -6,6 +6,11 @@ const Response = require("../utils/standardResponse");
 const ticketConfig = require("../configs/ticket.config.json");
 // const { Email, signJWTToken, verifyJWTToken } = require("../utils/utils");
 const { signJWTToken, verifyJWTToken } = require("../utils/utils");
+// Twilio client for sending SMS:
+const client = require("twilio")(
+  process.env.TWILIO_ACCOUNT_SID,
+  process.env.TWILIO_AUTH_TOKEN
+);
 
 // Sign a JWT token and send it to the client:
 
@@ -24,15 +29,15 @@ const sendResponseWithJWTCookie = (req, res, next) => {
 
 // Signup POST controller:
 module.exports.signup = catchAsync(async (req, res, next) => {
-  const { name, email, password, phone } = req.body;
+  const { name, phone, password } = req.body;
 
   if (!name)
     return next(
       new AppError(400, "User name is required", error[400].nameRequired)
     );
-  if (!email)
+  if (!phone)
     return next(
-      new AppError(400, "User E-mail is required", error[400].emailRequired)
+      new AppError(400, "User phone is required", error[400].phoneRequired)
     );
   if (!password)
     return next(
@@ -41,9 +46,8 @@ module.exports.signup = catchAsync(async (req, res, next) => {
 
   const user = await User.create({
     name,
-    email,
-    password,
     phone,
+    password,
   });
 
   // Remove password from output:
@@ -56,22 +60,16 @@ module.exports.signup = catchAsync(async (req, res, next) => {
     data: { user },
   };
 
-  // Send welcome email:
-  // const emailMessage = `Hello ${user.name},\n\nWelcome to the app. Hope you enjoy using it.\n\nRegards,\nKishor Balgi`;
-  // const emailHtml = `<h1>Hello ${user.name},</h1><p>Welcome to the app. Hope you enjoy using it.</p><p>Regards,<br>Kishor Balgi</p>`;
-  // const mailer = new Email(user);
-  // await mailer.sendCustomMail("Welcome to the app", emailMessage, emailHtml);
-
   sendResponseWithJWTCookie(req, res, next);
 });
 
 // Login POST controller:
 module.exports.login = catchAsync(async (req, res, next) => {
-  const { email, password } = req.body;
+  const { phone, password } = req.body;
 
-  if (!email)
+  if (!phone)
     return next(
-      new AppError(400, "User E-mail is required", error[400].emailRequired)
+      new AppError(400, "User E-mail is required", error[400].phoneRequired)
     );
   if (!password) {
     return next(
@@ -79,14 +77,14 @@ module.exports.login = catchAsync(async (req, res, next) => {
     );
   }
 
-  const user = await User.findOne({ email }).select("+password");
+  const user = await User.findOne({ phone }).select("+password");
 
   // Check if user exists and password is correct:
   if (!user || !(await user.checkPassword(password))) {
     return next(
       new AppError(
         400,
-        "Invalid E-mail or password",
+        "Invalid Phone or password",
         error[400].invalidCredentials
       )
     );
@@ -133,4 +131,53 @@ module.exports.logout = catchAsync(async (req, res, next) => {
     httpOnly: true,
   });
   res.status(200).json(Response(null, "User logged out successfully"));
+});
+// Send a verification OTP:
+module.exports.sendVerificationOTP = catchAsync(async (req, res, next) => {
+  client.verify.v2
+    .services(process.env.TWILIO_SERVICE_ID)
+    .verifications.create({ to: `+91${req.query.phone}`, channel: "sms" })
+    .then((verification) => {
+      res
+        .status(200)
+        .json(Response(null, "OTP sent successfully", { verification }));
+    });
+});
+
+// Verify a verification OTP:
+module.exports.verifyVerificationOTP = catchAsync(async (req, res, next) => {
+  client.verify.v2
+    .services(process.env.TWILIO_SERVICE_ID)
+    .verificationChecks.create({
+      to: `+91${req.query.phone}`,
+      code: req.query.code,
+    })
+    .then(async (verification_check) => {
+      if (verification_check.status === "approved") {
+        const user = await User.findOneAndUpdate(
+          { phone: req.query.phone },
+          {
+            $set: {
+              phone_verified: true,
+            },
+          }
+        );
+        console.log(user);
+        res
+          .status(200)
+          .json(
+            Response(null, "OTP verified successfully", { verification_check })
+          );
+      } else
+        res
+          .status(400)
+          .json(
+            Response(
+              null,
+              "OTP verification failed",
+              { verification_check },
+              "OTP verification failed"
+            )
+          );
+    });
 });
