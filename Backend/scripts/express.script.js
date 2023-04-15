@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing files
 // Cors:
 app.use(
   cors({
-    origin: "http://localhost:3001",
+    origin: process.env.frontendURL,
     credentials: true,
   })
 );

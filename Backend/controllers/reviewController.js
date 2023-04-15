@@ -1,11 +1,11 @@
 const User = require("../models/User");
 const Item = require("../models/Item");
+const Purchase = require("../models/Purchase");
 const Review = require("../models/Review");
 const catchAsync = require("../utils/catchAsync");
 const error = require("../configs/error.codes.json");
 const AppError = require("../utils/appError");
 const Response = require("../utils/standardResponse");
-const { AwsInstance } = require("twilio/lib/rest/accounts/v1/credential/aws");
 
 // Create a item controller:
 module.exports.createReview = catchAsync(async (req, res, next) => {
@@ -34,6 +34,21 @@ module.exports.createReview = catchAsync(async (req, res, next) => {
       new AppError(
         400,
         "You have already added a review for this seller and item",
+        error[403].forbidden
+      )
+    );
+  }
+
+  const findPurchase = await Purchase.findOne({
+    item: forItem,
+    buyer: req.user._id,
+  });
+
+  if (!findPurchase) {
+    return next(
+      new AppError(
+        400,
+        "You have not purchased this item, so you cannot add a review",
         error[403].forbidden
       )
     );

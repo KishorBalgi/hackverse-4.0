@@ -67,6 +67,12 @@ module.exports.getAllItems = catchAsync(async (req, res, next) => {
         as: "seller",
       },
     },
+    {
+      $sort: {
+        "seller.upvotes": -1,
+        "seller.downvotes": 1,
+      },
+    },
   ];
 
   const items = await Item.aggregate(aggregate);
