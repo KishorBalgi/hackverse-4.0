@@ -1,16 +1,35 @@
 import React , { useState } from "react";
+import api from "../../Config";
+import Alert from "../../Utils/alert";
 
 // User sign in page 
 const SignIn = () => {
 
     const [formData , setFormData] = useState({
-        email : '',
+        phoneno : '',
         password : ''
     });
+    const [status , setStatus] = useState({});
 
     const submitHandler = (e) => {
         e.preventDefault();
-        console.log(formData);
+        api.post('/api/auth/signin' , {
+            phone : formData.phoneno,
+            password : formData.password
+        }, {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+        })
+        .then(res => {
+            if (res.ok)
+                setStatus({ message: res.message, type: "ok" })
+            else
+                setStatus({ message: res.message, type: "error" })
+        })
+        .catch(err => {
+            setStatus({ message: err.message, type: "error" })
+        });
     }
 
     const inputHandler = (e) => {
@@ -24,22 +43,23 @@ const SignIn = () => {
         <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100">
             <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
                 <h2 className="text-2xl font-bold mb-4">Sign In</h2>
+                <Alert message={status.message} type={status.type}/>
                 <form onSubmit={submitHandler}>
                     <div className="mb-4">
                         <label
-                            htmlFor="email"
+                            htmlFor="phoneno"
                             className="block text-gray-700 font-bold mb-2"
                         >
-                            Email
+                            Phone Number
                         </label>
                         <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            value={formData.email}
+                            type="number"
+                            id="phoneno"
+                            name="phoneno"
+                            value={formData.phoneno}
                             onChange={inputHandler}
                             className="border rounded-md py-2 px-3 w-full"
-                            placeholder="Enter your email address"
+                            placeholder="Enter phone number"
                         />
                     </div>
                     <div className="mb-4">
@@ -56,20 +76,8 @@ const SignIn = () => {
                             value={formData.password}
                             onChange={inputHandler}
                             className="border rounded-md py-2 px-3 w-full"
-                            placeholder="Enter your password"
+                            placeholder="Enter password"
                         />
-                    </div>
-                    <div className="mb-6">
-                        <label htmlFor="checkbox" className="inline-flex items-center">
-                            <input
-                                type="checkbox"
-                                id="checkbox"
-                                className="form-checkbox h-5 w-5 text-gray-600"
-                            />
-                            {/* <span className="ml-2 text-gray-700">
-                I agree to the terms and conditions
-              </span> */}
-                        </label>
                     </div>
                     <button
                         type="submit"

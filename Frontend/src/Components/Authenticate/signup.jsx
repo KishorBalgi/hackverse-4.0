@@ -1,15 +1,36 @@
 import React, { useState } from "react";
+import api from "../../Config";
+import Alert from "../../Utils/alert";
 
 // User sign up page 
 const SignUp = () => {
     const [formData , setFormData] = useState({
-        email : '',
+        name : '',
+        phoneno : '',
         password : ''
     });
+    const [status , setStatus] = useState({});
 
     const submitHandler = (e) => {
         e.preventDefault();
-        console.log(formData);
+        api.post('/api/auth/signup' , {
+            name : formData.name,
+            phone : formData.phoneno,
+            password : formData.password
+        }, {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+        })
+        .then(res => {
+            if (res.ok)
+                setStatus({ message: res.message, type: "ok" })
+            else
+                setStatus({ message: res.message, type: "error" })
+        })
+        .catch(err => {
+            setStatus({ message: err.message, type: "error" })
+        });
     }
 
     const inputHandler = (e) => {
@@ -23,22 +44,40 @@ const SignUp = () => {
         <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100">
             <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
                 <h2 className="text-2xl font-bold mb-4">Sign Up</h2>
+                <Alert message={status.message} type={status.type}/>
                 <form onSubmit={submitHandler}>
                     <div className="mb-4">
                         <label
-                            htmlFor="email"
+                            htmlFor="name"
                             className="block text-gray-700 font-bold mb-2"
                         >
-                            Email
+                            Name
                         </label>
                         <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            value={formData.email}
+                            type="name"
+                            id="name"
+                            name="name"
+                            value={formData.name}
                             onChange={inputHandler}
                             className="border rounded-md py-2 px-3 w-full"
-                            placeholder="Enter your email address"
+                            placeholder="Enter name"
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label
+                            htmlFor="phoneno"
+                            className="block text-gray-700 font-bold mb-2"
+                        >
+                            Phone Number
+                        </label>
+                        <input
+                            type="number"
+                            id="phoneno"
+                            name="phoneno"
+                            value={formData.phoneno}
+                            onChange={inputHandler}
+                            className="border rounded-md py-2 px-3 w-full"
+                            placeholder="Enter phone number"
                         />
                     </div>
                     <div className="mb-4">
@@ -55,20 +94,8 @@ const SignUp = () => {
                             value={formData.password}
                             onChange={inputHandler}
                             className="border rounded-md py-2 px-3 w-full"
-                            placeholder="Enter your password"
+                            placeholder="Enter password"
                         />
-                    </div>
-                    <div className="mb-6">
-                        <label htmlFor="checkbox" className="inline-flex items-center">
-                            <input
-                                type="checkbox"
-                                id="checkbox"
-                                className="form-checkbox h-5 w-5 text-gray-600"
-                            />
-                            {/* <span className="ml-2 text-gray-700">
-                                I agree to the terms and conditions
-                            </span> */}
-                        </label>
                     </div>
                     <button
                         type="submit"
