@@ -4,6 +4,7 @@ import SignUp from './Components/Authenticate/signup';
 import SignIn from './Components/Authenticate/signin';
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
+import OTP from './Components/Authenticate/otp';
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
     <Routes>
       <Route path='/signup' element={<SignUp/>}/>
       <Route path='/signin' element={<SignIn/>}/>
+      <Route path='/otp' element={<OTP/>}/>
     </Routes>
     <Footer/>
     </>

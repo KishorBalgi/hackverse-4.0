@@ -58,18 +58,6 @@ const SignUp = () => {
                             placeholder="Enter your password"
                         />
                     </div>
-                    {/* <div className="mb-6">
-                        <label htmlFor="checkbox" className="inline-flex items-center">
-                            <input
-                                type="checkbox"
-                                id="checkbox"
-                                className="form-checkbox h-5 w-5 text-gray-600"
-                            />
-                            <span className="ml-2 text-gray-700">
-                                I agree to the terms and conditions
-                            </span>
-                        </label>
-                    </div> */}
                     <button
                         type="submit"
                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
