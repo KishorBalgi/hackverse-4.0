@@ -23,7 +23,12 @@
     "fileSizeExceeded": "400-fileSizeExceeded",
     "fileTypeNotAllowed": "400-fileTypeNotAllowed",
     "fileRequired": "400-fileRequired",
-    "invalidPageNumber": "400-invalidPageNumber"
+    "invalidPageNumber": "400-invalidPageNumber",
+    "descriptionRequired": "400-descriptionRequired",
+    "priceRequired": "400-priceRequired",
+    "quantityRequired": "400-quantityRequired",
+    "dateOfHarvestRequired": "400-dateOfHarvestRequired",
+    "sellerRequired": "400-sellerRequired"
   },
   "401": {
     "invalidToken": "401-invalidToken",

@@ -46,7 +46,7 @@ module.exports.signup = catchAsync(async (req, res, next) => {
 
   const user = await User.create({
     name,
-    phone,
+    phone: phone.toString(),
     password,
   });
 

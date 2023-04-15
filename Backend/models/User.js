@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema({
   },
   phone: {
     type: String,
+    unique: true,
     required: [true, error[400].phoneRequired],
     trim: true,
   },
@@ -38,6 +39,20 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  upvotes: {
+    type: Number,
+    default: 0,
+  },
+  downvotes: {
+    type: Number,
+    default: 0,
+  },
+  reviews: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Review",
+    },
+  ],
   _profile_info: {
     created_at: {
       type: Date,
