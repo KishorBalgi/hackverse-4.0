@@ -4,7 +4,7 @@ import React , { useState } from "react";
 const SignIn = () => {
 
     const [formData , setFormData] = useState({
-        email : '',
+        phoneno : '',
         password : ''
     });
 
@@ -27,19 +27,19 @@ const SignIn = () => {
                 <form onSubmit={submitHandler}>
                     <div className="mb-4">
                         <label
-                            htmlFor="email"
+                            htmlFor="phoneno"
                             className="block text-gray-700 font-bold mb-2"
                         >
-                            Email
+                            Phone Number
                         </label>
                         <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            value={formData.email}
+                            type="number"
+                            id="phoneno"
+                            name="phoneno"
+                            value={formData.phoneno}
                             onChange={inputHandler}
                             className="border rounded-md py-2 px-3 w-full"
-                            placeholder="Enter your email address"
+                            placeholder="Enter phone number"
                         />
                     </div>
                     <div className="mb-4">
@@ -56,7 +56,7 @@ const SignIn = () => {
                             value={formData.password}
                             onChange={inputHandler}
                             className="border rounded-md py-2 px-3 w-full"
-                            placeholder="Enter your password"
+                            placeholder="Enter password"
                         />
                     </div>
                     <button

@@ -3,7 +3,8 @@ import React, { useState } from "react";
 // User sign up page 
 const SignUp = () => {
     const [formData , setFormData] = useState({
-        email : '',
+        name : '',
+        phoneno : '',
         password : ''
     });
 
@@ -26,19 +27,36 @@ const SignUp = () => {
                 <form onSubmit={submitHandler}>
                     <div className="mb-4">
                         <label
-                            htmlFor="email"
+                            htmlFor="name"
                             className="block text-gray-700 font-bold mb-2"
                         >
-                            Email
+                            Name
                         </label>
                         <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            value={formData.email}
+                            type="name"
+                            id="name"
+                            name="name"
+                            value={formData.name}
                             onChange={inputHandler}
                             className="border rounded-md py-2 px-3 w-full"
-                            placeholder="Enter your email address"
+                            placeholder="Enter name"
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label
+                            htmlFor="phoneno"
+                            className="block text-gray-700 font-bold mb-2"
+                        >
+                            Phone Number
+                        </label>
+                        <input
+                            type="number"
+                            id="phoneno"
+                            name="phoneno"
+                            value={formData.phoneno}
+                            onChange={inputHandler}
+                            className="border rounded-md py-2 px-3 w-full"
+                            placeholder="Enter phone number"
                         />
                     </div>
                     <div className="mb-4">
@@ -55,7 +73,7 @@ const SignUp = () => {
                             value={formData.password}
                             onChange={inputHandler}
                             className="border rounded-md py-2 px-3 w-full"
-                            placeholder="Enter your password"
+                            placeholder="Enter password"
                         />
                     </div>
                     <button
