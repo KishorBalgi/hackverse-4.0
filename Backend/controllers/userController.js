@@ -3,6 +3,7 @@ const catchAsync = require("../utils/catchAsync");
 const error = require("../configs/error.codes.json");
 const AppError = require("../utils/appError");
 const Response = require("../utils/standardResponse");
+const Purchase = require("../models/Purchase");
 // const { Email } = require("../utils/utils");
 
 // Update user profile controller:
@@ -81,4 +82,18 @@ module.exports.updatePassword = catchAsync(async (req, res, next) => {
   await user.save();
 
   res.status(200).json(Response(null, "Password updated successfully"));
+});
+
+// get user buy and sell activity:
+module.exports.getUserActivity = catchAsync(async (req, res, next) => {
+  const purchases = await Purchase.find({ buyer: req.user._id });
+  //  find all items from purchases by po[ulating the item field:
+  const sales = await Purchase.find().populate({
+    path: "item",
+    match: { seller: req.user._id },
+  });
+
+  return res
+    .status(200)
+    .json(Response(null, "User activity", { purchases, sales }));
 });

@@ -5,7 +5,6 @@ const catchAsync = require("../utils/catchAsync");
 const error = require("../configs/error.codes.json");
 const AppError = require("../utils/appError");
 const Response = require("../utils/standardResponse");
-const { AwsInstance } = require("twilio/lib/rest/accounts/v1/credential/aws");
 
 // Create a item controller:
 module.exports.createReview = catchAsync(async (req, res, next) => {

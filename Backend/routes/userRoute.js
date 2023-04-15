@@ -6,6 +6,7 @@ const { checkUserAuth } = require("../middlewares/checkUserAuth.js");
 
 Router.post("/update/profile", checkUserAuth, userController.updateProfile);
 Router.post("/update/password", checkUserAuth, userController.updatePassword);
+Router.get("/activity", checkUserAuth, userController.getUserActivity);
 // Router.post(
 //   "/update/profilePicture",
 //   checkUserAuth,
