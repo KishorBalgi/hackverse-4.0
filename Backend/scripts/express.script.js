@@ -12,6 +12,7 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing files
 
+console.log("process.env.frontendURL", process.env.frontendURL);
 // Cors:
 app.use(
   cors({

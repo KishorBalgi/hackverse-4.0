@@ -1,6 +1,6 @@
+require("dotenv").config();
 const expressApp = require("./scripts/express.script.js");
 // Dot env:
-require("dotenv").config();
 
 // Connect to database:
 require("./scripts/mongodb.script.js");
