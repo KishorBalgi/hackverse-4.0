@@ -12,14 +12,8 @@ app.use(cookieParser());
 // Parse body:
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing files
-
 // Cors:
-app.use(
-  cors({
-    origin: meta.host,
-    credentials: true,
-  })
-);
+app.use(cors({ origin: meta.host, credentials: true }));
 
 app.listen(PORT, () => {
   console.log("Server running on port 3000");
