@@ -4,6 +4,7 @@ const PORT = process.env.PORT || 3000;
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const meta = require("../configs/meta.json");
 
 // Parse cookies:
 app.use(cookieParser());
@@ -15,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing files
 // Cors:
 app.use(
   cors({
-    origin: process.env.frontendURL,
+    origin: meta.host,
     credentials: true,
   })
 );
