@@ -11,6 +11,7 @@ import { useUser } from "./Context/userContext";
 import api from "./Config";
 import AddProduct from "./Pages/addProduct";
 import DashboardPage from "./Pages/dashboard";
+import Review from "./Pages/review";
 import CropDetail from "./Components/CropDetail/CropDetail";
 import Home from "./Components/Home/Home";
 
@@ -32,8 +33,9 @@ const App = () => {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/otp/:phoneno" element={<OTP />} />
         <Route path="/cart" element={<UserCart />} />
-        <Route path="/addproduct" element={<AddProduct />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/addproduct" element={<AddProduct/>}/>
+        <Route path="/dashboard" element={<DashboardPage/>}/>
+        <Route path="/review/:seller/:item" element={<Review/>}/>
         <Route path="/" element={<Home />} />
         <Route path="/marketplace" element={<CropDetail />} />
       </Routes>
