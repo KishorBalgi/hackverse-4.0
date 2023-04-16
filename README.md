@@ -40,9 +40,16 @@
 
 </div>
 
+<div align="center">
 
-### [![Website Screenshot](screenshot.png)](https://www.triumphmayflowerclub.com/)
+## Website Screenshot :
+![image](https://user-images.githubusercontent.com/84305637/232279055-38d033b2-5e9b-4eb7-bad7-f96bc8acc762.png)
 
+</div>
+<hr>
+
+
+<h1 align="center"> About </h1>
 <img src="https://user-images.githubusercontent.com/84305637/232262879-e1a8823f-d30b-4200-8f47-1e9dec628461.png" alt="Logo" height="200px" align="right">
 Welcome to our agricultural marketplace where buying and selling of fresh farm produce is made easy and transparent for everyone. Our marketplace provides an open platform for farmers and buyers to interact and trade directly, removing the need for middlemen and resulting in fair prices for all.
 
@@ -88,11 +95,18 @@ This will start the server on http://localhost:5000.
 
 ### 5. Start the client:
 ```
-cd client
+cd Frontend
 npm install
 npm start
 ```
 This will start the client on http://localhost:3000.
+
+### 5. Start the Backend:
+```
+cd Backend
+npm install
+npm start
+```
 
 ### 6. Test the APIs using Postman:
 Import the mern-project.postman_collection.json file into Postman and test the APIs.
