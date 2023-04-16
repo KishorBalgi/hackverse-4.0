@@ -6,14 +6,14 @@ import { AiFillCompass } from "react-icons/ai";
 
 const Navbar = () => {
   const { user, setUser } = useUser();
-  const [coins, setCoins] = React.useState(0);
-  console.log(user);
+  // const [coins, setCoins] = React.useState(0);
+  // console.log(user);
 
-  useEffect(() => {
-    if (user !== null) {
-      setCoins(user.coins);
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user !== null) {
+  //     setCoins(user.coins);
+  //   }
+  // }, [user]);
 
   const logoutHandler = () => {
     api
@@ -92,11 +92,11 @@ const Navbar = () => {
                   >
                     Logout
                   </button>
-                  <p className="text-white text-xl w-fit gird grid-cols-2 place-items-center">
+                  {/* <p className="text-white text-xl w-fit gird grid-cols-2 place-items-center">
                     <AiFillCompass size={20} color="#FFD700" />
                     {coins}
                     {console.log(coins)}
-                  </p>
+                  </p> */}
                 </>
               )}
             </div>

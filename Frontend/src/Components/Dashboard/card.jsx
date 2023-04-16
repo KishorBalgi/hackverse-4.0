@@ -1,8 +1,7 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { redirect } from "react-router-dom";
 
 const Card = ({ product, pur = false }) => {
-  const navigate = useNavigate();
   return (
     <div className="max-w-md mx-4 bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
       {/* <div className="md:flex"> */}
@@ -26,14 +25,18 @@ const Card = ({ product, pur = false }) => {
           &#8377;{product.price}
         </a>
         {pur && (
-          <button
-            className="mx-5 bg-black text-white rounded-md px-4 py-2"
-            // onclick={navigate(
-            //   `/review/${product.item.seller}/${product.item._id}`
-            // )}
-          >
-            Add Review
-          </button>
+          <a href={`/review/${product.item.seller}/${product.item._id}`}>
+            <button
+              className="mx-5 bg-black text-white rounded-md px-4 py-2"
+              // onclick={() =>
+              //   window.location.replace(
+              //     `/review/${product.item.seller}/${product.item._id}`
+              //   )
+              // }
+            >
+              Add Review
+            </button>
+          </a>
         )}
       </div>
     </div>
