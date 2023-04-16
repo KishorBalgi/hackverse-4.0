@@ -3,33 +3,15 @@
         <a href="https://www.triumphmayflowerclub.com/">FarmFavor</a>
     </h1>
     <h4><b>Empowering farmers with the power of the crowd</b></h4>
-    <h4>
-        <a href="#links">Links</a>
-        •
-        <a href="#versions">Versions</a>
-        •
-        <a href="#roadmap">Roadmap</a>
-        •
-        <a href="#development-guide">Development guide</a>
-        •
-        <a href="#deployment">Deployment</a>
-        •
-        <a href="#contact">Contact</a>
-        •
-        <a href="#copyright">Copyright</a>
-    </h4>
     <h3>
         <a href="https://www.github.com/andiemmadavies">
             <img src="https://img.shields.io/badge/maintainer-%40KishorBalgi-yellow">
         </a>
         <a href="https://www.triumphmayflowerclub.com/">
-            <img src="https://img.shields.io/website?url=">
+            <img src="https://img.shields.io/website?url=https://farm-favor.vercel.app">
         </a>
-        <a href="https://www.triumphmayflowerclub.com/news/2018/03/launchofthenewclubwebsite">
+        <a href="https://github.com/KishorBalgi/hackverse-4.0">
             <img src="https://img.shields.io/badge/launched-april%202023-teal">
-        </a>
-        <a href="https://www.github.com/Stack-in-a-box/triumphmayflowerclub.com/commits/master">
-            <img src="https://img.shields.io/github/last-commit/Stack-in-a-box/triumphmayflowerclub.com?color=blue&label=updated">
         </a>
         <a href="https://www.github.com/Stack-in-a-box/triumphmayflowerclub.com/releases/latest">
             <img src="https://img.shields.io/github/v/release/Stack-in-a-box/triumphmayflowerclub.com?color=blueviolet&label=version">
@@ -38,7 +20,18 @@
             <img src="https://img.shields.io/badge/licence-%C2%A9-crimson">
         </a>
     </h3>
+  
 
+<img src="https://forthebadge.com/images/badges/built-by-developers.svg"/>
+<img src="https://forthebadge.com/images/badges/uses-js.svg"/>
+<br>
+<img src="https://forthebadge.com/images/badges/made-with-javascript.svg"/>
+<img src="https://forthebadge.com/images/badges/powered-by-responsibility.svg"/>
+<img src="https://forthebadge.com/images/badges/built-with-love.svg"/>
+
+<p>
+    <hr>
+    
 # Tech Stack
 
 ![REACT](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
