@@ -43,6 +43,18 @@ const Navbar = () => {
                 >
                   Add Product
                 </Link>
+                <Link
+                  to="/search"
+                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Search
+                </Link>
+                <Link
+                  to="/cart"
+                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Cart
+                </Link>
               </div>
             </div>
           </div>
@@ -59,7 +71,7 @@ const Navbar = () => {
                     Sign in
                   </Link>
                   <Link
-                    to="signup"
+                    to="/signup"
                     className="bg-indigo-500 text-white px-3 py-2 rounded-md text-sm font-medium"
                   >
                     Sign up
