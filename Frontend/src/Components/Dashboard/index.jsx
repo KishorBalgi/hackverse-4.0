@@ -37,7 +37,7 @@ const Dashboard = () => {
         <div className="flex">
           {purchases.length != 0 &&
             purchases.map((purchase) => {
-              return <Card product={purchase} />;
+              return <Card product={purchase} pur={true} />;
             })}
         </div>
       </div>

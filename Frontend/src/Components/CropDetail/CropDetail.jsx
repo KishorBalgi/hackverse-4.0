@@ -30,17 +30,18 @@ export default function CropDetail() {
     e.preventDefault();
     let query_url = "api/item/all?";
     if (productType !== "") {
-      query_url += `productType=${productType}&`;
+      query_url += `cartItem=${productType}`;
     }
     if (quantity !== "") {
-      query_url += `quantity=${quantity}&`;
+      query_url += `&quantity=${quantity}`;
     }
     if (price !== "") {
-      query_url += `price=${price}&`;
+      query_url += `&price=${price}`;
     }
     if (dateOfHarvest !== "") {
-      query_url += `dateOfHarvest=${dateOfHarvest}&`;
+      query_url += `&dateOfHarvest=${dateOfHarvest}`;
     }
+    console.log(query_url);
 
     api
       .get(query_url)
@@ -54,24 +55,25 @@ export default function CropDetail() {
   };
 
   return (
-    <div className="flex">
-      <div className="w-1/2 flex flex-col space-y-4 bg-white p-4 rounded-lg shadow-md bg-emerald-100">
+    <div className="flex my-5 ml-10">
+      <div className="w-1/2 flex flex-col space-y-4 bg-white p-4 rounded-lg shadow-md">
         <h1 className="font-bold text-gray-700 text-center">Filter</h1>
         <div className="m-4 ">
           <label htmlFor="productType" className="font-bold text-gray-700">
             Product Type
           </label>
           <select
+            name="productType"
             id="productType"
             value={productType}
             onChange={(e) => setProductType(e.target.value)}
-            className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            className="w-full rounded-lg border-2 border-gray-300 p-2 focus:outline-none focus:border-indigo-500"
           >
-            <option value="">Select Product</option>
-            <option value="wheat">Wheat</option>
+            <option value="">Select</option>
             <option value="paddy">Paddy</option>
-            <option value="tomato">Tomato</option>
+            <option value="wheat">Wheat</option>
             <option value="potato">Potato</option>
+            <option value="tomato">Tomato</option>
           </select>
         </div>
 
@@ -117,8 +119,6 @@ export default function CropDetail() {
             className="bg-white border border-gray-300 rounded-md shadow-sm px-4 py-2 w-full text-gray-700 leading-5 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue"
             placeholderText="Select a date"
             isClearable
-            //   showIcon={<FontAwesomeIcon icon={faCalendarAlt} />}
-
             value={dateOfHarvest}
             onChange={(date) => {
               const d = new Date(date).toLocaleDateString("fr-FR");

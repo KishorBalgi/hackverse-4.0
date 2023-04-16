@@ -20,12 +20,12 @@ const CropBox = ({ crop }) => {
   return (
     <div className="max-w-sm">
       <div
-        class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:border-gray-700 bg-zinc-300"
+        class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-md"
         title="mammals"
       >
-        <div class="flex flex-col items-center pb-10">
+        <div class="flex flex-col items-left p-5">
           <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-black">
-            {crop.name}
+            {crop.title}
           </h5>
 
           <p className="text-gray-700">Quantity : {crop.quantity}</p>

@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import api from "../../Config";
 import { useUser } from "../../Context/userContext";
+import { AiFillCompass } from "react-icons/ai";
 
 const Navbar = () => {
   const { user, setUser } = useUser();
+  const [coins, setCoins] = React.useState(0);
+  console.log(user);
+
+  useEffect(() => {
+    if (user !== null) {
+      setCoins(user.coins);
+    }
+  }, [user]);
 
   const logoutHandler = () => {
     api
@@ -22,14 +31,24 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex-shrink-0">
-              {/* <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-                alt="Workflow"
-              /> */}
+              <p className="text-3xl font-bold text-white">FarmFavor</p>
             </div>
             <div className="hidden sm:block sm:ml-6">
               <div className="flex space-x-4">
+                <Link
+                  to="/marketplace"
+                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Market Place
+                </Link>
+
+                <Link
+                  to="/addproduct"
+                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Sell Your Product
+                </Link>
+
                 <Link
                   to="/dashboard"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
@@ -38,22 +57,10 @@ const Navbar = () => {
                 </Link>
 
                 <Link
-                  to="/addproduct"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Add Product
-                </Link>
-                <Link
-                  to="/search"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Search
-                </Link>
-                <Link
                   to="/cart"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  Cart
+                  Your Cart
                 </Link>
               </div>
             </div>
@@ -78,12 +85,19 @@ const Navbar = () => {
                   </Link>
                 </>
               ) : (
-                <button
-                  onClick={logoutHandler}
-                  className="bg-indigo-500 text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Logout
-                </button>
+                <>
+                  <button
+                    onClick={logoutHandler}
+                    className="bg-indigo-500 text-white px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    Logout
+                  </button>
+                  <p className="text-white text-xl w-fit gird grid-cols-2 place-items-center">
+                    <AiFillCompass size={20} color="#FFD700" />
+                    {coins}
+                    {console.log(coins)}
+                  </p>
+                </>
               )}
             </div>
           </div>

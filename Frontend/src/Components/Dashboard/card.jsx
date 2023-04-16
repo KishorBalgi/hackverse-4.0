@@ -1,7 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const Card = ({ product }) => {
-  console.log(product);
+const Card = ({ product, pur = false }) => {
+  const navigate = useNavigate();
   return (
     <div className="max-w-md mx-4 bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
       {/* <div className="md:flex"> */}
@@ -22,10 +23,19 @@ const Card = ({ product }) => {
           href="#"
           className="mt-5 bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-400 transition-colors duration-300 ease-in-out inline-block"
         >
-          {product.price}
+          &#8377;{product.price}
         </a>
+        {pur && (
+          <button
+            className="mx-5 bg-black text-white rounded-md px-4 py-2"
+            // onclick={navigate(
+            //   `/review/${product.item.seller}/${product.item._id}`
+            // )}
+          >
+            Add Review
+          </button>
+        )}
       </div>
-      {/* </div> */}
     </div>
   );
 };

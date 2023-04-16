@@ -19,23 +19,23 @@ const App = () => {
 
   useEffect(() => {
     api.get("/api/auth/isLoggedIn").then((res) => {
-      setUser(res.data.user);
+      setUser(res.data.data.user);
     });
   }, []);
 
   return (
     <>
       <Navbar />
-      
+
       <Routes>
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/otp/:phoneno" element={<OTP />} />
         <Route path="/cart" element={<UserCart />} />
-        <Route path="/addproduct" element={<AddProduct/>}/>
-        <Route path="/dashboard" element={<DashboardPage/>}/>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/search" element={<CropDetail/>}/>
+        <Route path="/addproduct" element={<AddProduct />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/marketplace" element={<CropDetail />} />
       </Routes>
 
       <Footer />
