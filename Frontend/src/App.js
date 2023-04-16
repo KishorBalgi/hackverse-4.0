@@ -11,6 +11,7 @@ import { useUser } from "./Context/userContext";
 import api from "./Config";
 import AddProduct from "./Pages/addProduct";
 import DashboardPage from "./Pages/dashboard";
+import Review from "./Pages/review";
 
 const App = () => {
   const { user, setUser } = useUser();
@@ -31,6 +32,7 @@ const App = () => {
         <Route path="/cart" element={<UserCart />} />
         <Route path="/addproduct" element={<AddProduct/>}/>
         <Route path="/dashboard" element={<DashboardPage/>}/>
+        <Route path="/review/:seller/:item" element={<Review/>}/>
       </Routes>
       <Footer />
     </>
