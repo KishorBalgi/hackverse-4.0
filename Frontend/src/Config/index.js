@@ -3,9 +3,11 @@ import axios from "axios";
 
 const api = axios.create({
   baseURL: process.env.REACT_APP_BASEURL,
+  headers: {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  },
   withCredentials: true,
 });
-
-console.log(process.env.REACT_APP_BASEURL);
 
 export default api;
