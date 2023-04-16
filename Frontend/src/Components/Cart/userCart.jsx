@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { useCart } from "../../Context/cartContext";
+import api from "../../Config";
 const UserCart = () => {
   const { cart, setCart } = useCart();
   const [cartItems, setCartItems] = useState(cart);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
+
+  console.log(cartItems);
 
   useEffect(() => {
     calculateTotalPrice();
@@ -12,14 +15,14 @@ const UserCart = () => {
   }, [cartItems]);
 
   const removeItem = (id) => {
-    const newCart = cartItems.filter((item) => item.id !== id);
+    const newCart = cartItems.filter((item) => item._id !== id);
     setCartItems(newCart);
     setCart(newCart);
   };
 
   const increaseQuantity = (id) => {
     const newCart = cartItems.map((item) => {
-      if (item.id === id) {
+      if (item._id === id) {
         return { ...item, quantity: item.quantity + 1 };
       }
       return item;
@@ -30,7 +33,7 @@ const UserCart = () => {
 
   const decreaseQuantity = (id) => {
     const newCart = cartItems.map((item) => {
-      if (item.id === id) {
+      if (item._id === id) {
         return { ...item, quantity: item.quantity - 1 };
       }
       return item;
@@ -55,6 +58,29 @@ const UserCart = () => {
     setTotalItems(total);
   };
 
+  const CheckoutCart = (e) => {
+    e.preventDefault();
+    cartItems.forEach((item) => {
+      api
+        .post("/api/purchase/create", {
+          item: item._id,
+          quantity: item.quantity,
+        })
+        .then((res) => {
+          console.log(res);
+          if (res.status === 201) {
+            console.log("Purchase successful");
+            const newCart = cartItems.filter((i) => i._id !== item._id);
+            setCartItems(newCart);
+            setCart(newCart);
+          }
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    });
+  };
+
   return (
     <div className="cart grid place-items-center">
       <div className="cart__header">
@@ -77,14 +103,26 @@ const UserCart = () => {
                 <p>{item.title}</p>
                 <p>Price: {item.price}</p>
                 <p>Quantity: {item.quantity}</p>
-                <button
-                  onClick={() => removeItem(item.id)}
-                  className="text-white bg-black px-5 py-2 rounded-full my-4"
-                >
-                  Remove
-                </button>
-                {/* <button onClick={() => increaseQuantity(item.id)}>+</button>
-                <button onClick={() => decreaseQuantity(item.id)}>-</button> */}
+                <div className="grid grid-cols-3">
+                  <button
+                    onClick={() => increaseQuantity(item._id)}
+                    className="rounded-full text-white font-bold bg-black m-4 w-auto"
+                  >
+                    +
+                  </button>
+                  <button
+                    onClick={() => removeItem(item._id)}
+                    className="text-white bg-black px-5 py-2 rounded-full my-4"
+                  >
+                    Remove
+                  </button>
+                  <button
+                    onClick={() => decreaseQuantity(item._id)}
+                    className="rounded-full text-white font-bold bg-black m-4 w-auto"
+                  >
+                    -
+                  </button>
+                </div>
               </div>
             ))}
           </div>
@@ -95,7 +133,10 @@ const UserCart = () => {
           <p className="text-lg font-bold">Total Items: {totalItems}</p>
           <p className="text-lg font-bold">Total Price: {totalPrice}</p>
         </div>
-        <button className="text-white bg-black px-5 py-2 rounded-full my-4">
+        <button
+          className="text-white bg-black px-5 py-2 rounded-full my-4"
+          onClick={(e) => CheckoutCart(e)}
+        >
           Checkout
         </button>
       </div>

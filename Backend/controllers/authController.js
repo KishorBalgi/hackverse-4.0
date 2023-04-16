@@ -84,6 +84,7 @@ module.exports.login = catchAsync(async (req, res, next) => {
       new AppError(400, "Phone not verified", error[400].phoneNotVerified)
     );
   }
+  console.log(user);
 
   // Check if user exists and password is correct:
   if (!user || !(await user.checkPassword(password))) {
