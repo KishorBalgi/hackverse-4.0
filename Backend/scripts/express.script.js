@@ -6,6 +6,10 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const meta = require("../configs/meta.json");
 
+app.use(function (req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "https://farm-favor.vercel.app");
+  next();
+});
 // Parse cookies:
 app.use(cookieParser());
 
