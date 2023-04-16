@@ -17,6 +17,7 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing files
 // Cors:
+// app.use(cors({ origin: meta.dev_host, credentials: true }));
 app.use(cors({ origin: meta.host, credentials: true }));
 
 app.listen(PORT, () => {
