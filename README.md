@@ -1,6 +1,6 @@
 <div align="center">
     <h1>
-        <a href="https://www.triumphmayflowerclub.com/">FarmFavor</a>
+        <a href="https://farm-favor.vercel.app/">FarmFavor</a>
     </h1>
     <h4><b>Empowering farmers with the power of the crowd</b></h4>
     <h3>
